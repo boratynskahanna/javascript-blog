@@ -1,5 +1,4 @@
 'use strict'
-
 const titleClickHandler = function(event){ 
   event.preventDefault();
   const clickedElement = this; 
@@ -42,7 +41,6 @@ optTitleListSelector = '.titles';
   
 const generateTitleLinks = function(){
   /* remove contents of titleList */
-  titleList.innerHTML = '';
   const titleList = document.querySelector(optTitleListSelector);
   /* for each article */
   const articles = document.querySelectorAll(optArticleSelector);
@@ -60,12 +58,11 @@ const generateTitleLinks = function(){
     const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
     
     /* create HTML of the link */
-    titleList.insertAdjacentHTML('afterBegin', linkHTML);
-  
-    /* insert link into titleList */
     html = html + linkHTML;
+    
+    
   }
-
+  /* insert link into titleList */
   titleList.innerHTML = html;
   const links = document.querySelectorAll('.titles a');
   for(let link of links){
