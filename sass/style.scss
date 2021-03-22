@@ -118,8 +118,32 @@ body {
 
 .post-tags {
   display: flex;
-  
+
   p {
     margin: 0 10px 0 0;
   }
+}
+
+.tag-size-5 {
+  font-size: 35px;
+  color: #f8a5c2;
+  text-decoration: none;
+}
+
+.tag-size-3 {
+  font-size: 25px;
+  color: #63cdda;
+  text-decoration: none;
+}
+
+.tag-size-2 {
+  font-size: 20px;
+  color: #f3a683;
+  text-decoration: none;
+}
+
+.tag-size-1 {
+  font-size: 15px;
+  color: #f5cd79;
+  text-decoration: none;
 }
