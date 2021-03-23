@@ -298,7 +298,7 @@ const addClickListenersToAuthors = function() {
 // Generate Authors
 
 const generateAuthors = function() {
-  /* [NEW] create a new variable allAuthors with an empty array */
+  /* [NEW] create a new variable allAuthors with an empty object */
   let allAuthors = [];
 
   /* find all articles */
@@ -323,9 +323,16 @@ const generateAuthors = function() {
 
     /* [NEW] check if this link is NOT already in allAuthors */
     if(allAuthors.indexOf(linkHTML) == -1){
-      /* [NEW] add generated code to allAuthors array */
+    /* [NEW] add generated code to allAuthors array */
       allAuthors.push(linkHTML);
     }
+
+    //if(!allAuthors[authorTag]) {
+    //  allAuthors[authorTag] = 1;
+    //} else {
+    //  allAuthors[authorTag]++;
+    //}
+    //console.log(allAuthors);
 
   /* END LOOP: for every article: */
   }
