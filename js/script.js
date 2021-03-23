@@ -45,7 +45,8 @@ const optArticleSelector = '.post',
   optArticleAuthorSelector = '.post-author',
   optTagsListSelector = '.tags.list',
   optCloudClassCount = 5,
-  optCloudClassPrefix = 'tag-size-';
+  optCloudClassPrefix = 'tag-size-',
+  optAuthorsListSelector = '.authors.list';
 
 // Generate Title Links  
   
@@ -281,6 +282,7 @@ const authorClickHandler = function(event) {
 const addClickListenersToAuthors = function() {
   /* find all links to tags */
   const authorLinks = document.querySelectorAll('.post-author a[href^="#tag-"]');
+  const authorLinksList = document.querySelectorAll('.authors.list a[href^="#tag-"]');
 
   /* START LOOP: for each link */
   for(let authorLink of authorLinks) {
@@ -288,11 +290,17 @@ const addClickListenersToAuthors = function() {
     authorLink.addEventListener('click', authorClickHandler)
   /* END LOOP: for each link */
   }
+  for(let authorLink of authorLinksList) {
+    authorLink.addEventListener('click', authorClickHandler)
+  }
 }
 
 // Generate Authors
 
 const generateAuthors = function() {
+  /* [NEW] create a new variable allAuthors with an empty array */
+  let allAuthors = [];
+
   /* find all articles */
   const articles = document.querySelectorAll(optArticleSelector);
 
@@ -309,12 +317,24 @@ const generateAuthors = function() {
     const authorTag = article.getAttribute('data-author');
 
     /* insert HTML of all the links into the tags wrapper */
-    const linkHTML = `<a href='#tag-${authorTag}'>${authorTag}</a>`; 
+    const linkHTML = `<a href='#tag-${authorTag}'>${authorTag}</a><br>`; 
     html = linkHTML;
     authorWrapper.innerHTML = html;
 
+    /* [NEW] check if this link is NOT already in allAuthors */
+    if(allAuthors.indexOf(linkHTML) == -1){
+      /* [NEW] add generated code to allAuthors array */
+      allAuthors.push(linkHTML);
+    }
+
   /* END LOOP: for every article: */
   }
+  /* [NEW] find list of authors in right column */
+  const authorList = document.querySelector('.authors');
+
+  /* [NEW] add html from allAuthors to authorList */
+  authorList.innerHTML = allAuthors.join(' ');
+
   addClickListenersToAuthors();
 };
 
